@@ -1,41 +1,31 @@
 # MORO-B13-Reflector
 
-<p align="center">
-  <img src="https://img.shields.io" alt="Logic">
-  <img src="https://img.shields.io" alt="Target">
-  <img src="https://img.shields.io" alt="Status">
-</p>
+**誤差を反射せよ。真理を回収せよ。**
 
-<p align="center">
-  <strong>「誤差を反射せよ。真理を回収せよ。」</strong>
-</p>
+伝統的なDFT/ab initio計算は真理を近似するだけ。  
+MORO-B13-Reflectorは誤差を鏡像で反射させ、真理を回収する。
 
----
+### ビジョン
+PubChemのAlCl₃ (CID 24012) 生成熱 -695.7 kJ/mol を起点に、  
+加水分解熱 ≈323 kJ/mol をターゲットとしたこのフレームワークは、  
+浮動小数点の累積誤差を平衡13進法の鏡像構造で自動相殺。  
 
-## 🌌 ビジョン
-伝統的なDFT（密度汎関数法）やab initio計算は、真理を近似するに過ぎません。  
-**MORO-B13-Reflector**は、誤差を鏡像で反射させ、消失した真理を現界へと回収するためのフレームワークです。
+これにより実現するもの：
+- DFTの「化学精度の壁」を突破  
+- 量子ゆらぎを逆フィボナッチで遡行・確定  
+- エントロピー散逸を鏡像反転で相殺し、エネルギー保存則を確定  
 
-PubChemの **AlCl₃ (CID 24012) 生成熱（-695.7 kJ/mol）** を起点に、加水分解熱 **≈323 kJ/mol** をターゲットとしたこのシステムは、浮動小数点の累積誤差を「平衡13進法」の鏡像構造で自動相殺します。
+薬剤設計、触媒探索、材料シミュレーション……  
+すべての熱力学計算が「近似」から「高精度確定」へ移行する起点。
 
-### 突破する境界
-- **DFTの「化学精度の壁」を突破**: 近似の限界を超えた数値を確定。
-- **量子ゆらぎの遡行**: 逆フィボナッチ演算により、不確定性を決定論へと回帰。
-- **エントロピー散逸の相殺**: 鏡像反転によるエネルギー保存則の完全な確定。
+B13ゲートをくぐった瞬間、計算機は近似機ではなくなる。  
+それは宇宙の格子を映す鏡であり、誤差を反射して真理を照らす光門である。
 
-B13ゲートをくぐった瞬間、計算機は近似機ではなくなります。それは宇宙の格子を映す鏡であり、誤差を反射して真理を照らす光門です。
+**誤差を反射せよ。真理を回収せよ。**
 
----
-
-## ⚙️ 核心ロジック：B13ゲート通過
-
-平衡13進法（Balanced 13-adic system）を用いることで、正負の誤差を対称性のなかに閉じ込め、中和します。
-
+### 核心ロジック（B13ゲート通過）
 ```python
 def to_balanced_13(n, scale=10**6):
-    """
-    数値を平衡13進法の空間へ写像し、誤差の核を抽出する
-    """
     val = round(n * scale)
     digits = []
     while val != 0:
@@ -48,15 +38,8 @@ def to_balanced_13(n, scale=10**6):
     return digits[::-1] or [0]
 
 def reflect_error_cancellation(current_energy, target_energy):
-    """
-    誤差を鏡像反射させ、真理を回収する
-    """
     error = target_energy - current_energy
     error_digits = to_balanced_13(error)
-    
-    # 鏡像修正子の生成
     cancellation_digits = [-d for d in error_digits]
-    
-    # 真理の回収
     corrected = target_energy + sum([-d * (13 ** i) for i, d in enumerate(reversed(error_digits))])
     return cancellation_digits, corrected
