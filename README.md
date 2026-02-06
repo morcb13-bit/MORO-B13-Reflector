@@ -41,3 +41,12 @@ def reflect_error_cancellation(current_energy, target_energy):
     cancellation_digits = [-d for d in error_digits]
     corrected = target_energy + sum([-d * (13 ** i) for i, d in enumerate(reversed(error_digits))])
     return cancellation_digits, corrected
+
+デモ例
+ターゲット熱量: 323.0 kJ/mol
+DFT計算値（誤差あり）: 322.9998
+鏡像修正子: [-1, -2, -5]
+修正後エネルギー: 323.0000MORO理論のゲートをくぐった計算ツール。
+
+MORO理論のB13ゲートを通過する計算ツール。
+誤差を反射せよ。真理を回収せよ。
