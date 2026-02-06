@@ -42,7 +42,7 @@ def reflect_error_cancellation(current_energy, target_energy):
     corrected = target_energy + sum([-d * (13 ** i) for i, d in enumerate(reversed(error_digits))])
     return cancellation_digits, corrected
 
-デモ例
+###デモ例
 ターゲット熱量: 323.0 kJ/mol
 DFT計算値（誤差あり）: 322.9998
 鏡像修正子: [-1, -2, -5]
